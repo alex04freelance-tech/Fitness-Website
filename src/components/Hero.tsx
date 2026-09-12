@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { brand } from '@/data/brand';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const heroImages = [
   'https://images.pexels.com/photos/33360214/pexels-photo-33360214.jpeg?auto=compress&cs=tinysrgb&h=1200&w=1920',
@@ -12,16 +16,11 @@ const heroImages = [
 
 export function Hero() {
   const reduced = useReducedMotion();
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
-  const clipHeight = useTransform(scrollYProgress, [0, 0.8], ['0vh', '100vh']);
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const clipRef = useRef<HTMLDivElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,6 +32,52 @@ export function Hero() {
     return () => clearInterval(interval);
   }, [reduced]);
 
+  useEffect(() => {
+    if (reduced || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.6,
+          pin: true,
+          pinSpacing: false,
+        },
+      });
+
+      tl.to(bgRef.current, {
+        scale: 1.15,
+        opacity: 0,
+        ease: 'none',
+        duration: 1,
+      }, 0);
+
+      tl.to(textRef.current, {
+        y: -80,
+        ease: 'none',
+        duration: 0.5,
+      }, 0);
+
+      tl.to(scrollIndicatorRef.current, {
+        opacity: 0,
+        ease: 'none',
+        duration: 0.4,
+      }, 0);
+
+      tl.fromTo(clipRef.current, {
+        height: 0,
+      }, {
+        height: '100vh',
+        ease: 'none',
+        duration: 0.8,
+      }, 0.2);
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [reduced]);
+
   const scrollToContent = () => {
     const el = document.querySelector('#philosophy');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -41,13 +86,10 @@ export function Hero() {
   return (
     <section
       id="hero"
-      ref={containerRef}
+      ref={sectionRef}
       className="relative h-screen min-h-[700px] w-full overflow-hidden bg-charcoal"
     >
-      <motion.div
-        style={reduced ? {} : { scale, opacity }}
-        className="absolute inset-0"
-      >
+      <div ref={bgRef} className="absolute inset-0">
         {heroImages.map((src, i) => (
           <div
             key={i}
@@ -64,12 +106,9 @@ export function Hero() {
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/30 to-charcoal/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/40 to-transparent" />
-      </motion.div>
+      </div>
 
-      <motion.div
-        style={reduced ? {} : { y: textY }}
-        className="relative z-10 h-full flex flex-col justify-center container-edge"
-      >
+      <div ref={textRef} className="relative z-10 h-full flex flex-col justify-center container-edge">
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,20 +160,21 @@ export function Hero() {
             {brand.secondaryCta}
           </button>
         </motion.div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        style={reduced ? {} : { opacity }}
+      <div
+        ref={scrollIndicatorRef}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
         <button onClick={scrollToContent} className="text-ivory/50 hover:text-ivory/80 transition-colors" aria-label="Scroll down">
           <ArrowDown size={20} className="animate-bounce" />
         </button>
-      </motion.div>
+      </div>
 
-      <motion.div
-        style={reduced ? {} : { height: clipHeight }}
-        className="absolute bottom-0 left-0 right-0 bg-ivory origin-top pointer-events-none"
+      <div
+        ref={clipRef}
+        className="absolute bottom-0 left-0 right-0 bg-ivory origin-top pointer-events-none z-20"
+        style={{ height: reduced ? '0' : '0' }}
       />
     </section>
   );
