@@ -3,6 +3,7 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { Philosophy } from '@/components/Philosophy';
 import { ClassExplorer } from '@/components/ClassExplorer';
+import { SignaturePrograms } from '@/components/SignaturePrograms';
 import { Schedule } from '@/components/Schedule';
 import { Trainers } from '@/components/Trainers';
 import { PersonalTraining } from '@/components/PersonalTraining';
@@ -23,6 +24,7 @@ function App() {
         <Hero />
         <Philosophy />
         <ClassExplorer />
+        <SignaturePrograms />
         <Schedule />
         <Trainers />
         <PersonalTraining />

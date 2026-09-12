@@ -31,7 +31,7 @@ export function PersonalTraining() {
 
           {/* Content */}
           <div className="lg:col-span-6 order-1 lg:order-2">
-            <p className="section-label mb-4">05 — Personal Training</p>
+            <p className="section-label mb-4">06 — Personal Training</p>
             <motion.h2
               initial={reduced ? {} : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

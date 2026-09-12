@@ -16,7 +16,7 @@ export function Trainers() {
         {/* Header */}
         <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <p className="section-label mb-4">04 — Trainers</p>
+            <p className="section-label mb-4">05 — Trainers</p>
             <h2 className="font-display text-charcoal text-display-sm font-light">
               Coaches who care
               <br />

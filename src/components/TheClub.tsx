@@ -67,7 +67,7 @@ export function TheClub() {
         {/* Header */}
         <div className="container-edge mb-8 md:mb-12">
           <p className="text-xs uppercase tracking-[0.3em] text-stone-500 font-medium mb-4">
-            06 — The Club
+            07 — The Club
           </p>
           <h2 className="font-display text-ivory text-display-sm font-light">
             Step inside.

@@ -11,7 +11,7 @@ export function Membership() {
       <div className="container-edge">
         {/* Header */}
         <div className="mb-12 md:mb-20 text-center">
-          <p className="section-label mb-4">08 — Membership</p>
+          <p className="section-label mb-4">09 — Membership</p>
           <h2 className="font-display text-charcoal text-display-sm font-light">
             Choose your level.
           </h2>

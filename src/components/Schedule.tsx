@@ -98,7 +98,7 @@ export function Schedule() {
         {/* Header */}
         <div className="mb-12 md:mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-stone-500 font-medium mb-4">
-            03 — Schedule
+            04 — Schedule
           </p>
           <h2 className="font-display text-ivory text-display-sm font-light">
             The week ahead.

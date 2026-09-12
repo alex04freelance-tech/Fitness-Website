@@ -14,7 +14,7 @@ export function FacilityExplorer() {
       <div className="container-edge">
         {/* Header */}
         <div className="mb-12 md:mb-20">
-          <p className="section-label mb-4">07 — Facilities</p>
+          <p className="section-label mb-4">08 — Facilities</p>
           <h2 className="font-display text-charcoal text-display-sm font-light">
             Every space,
             <br />
