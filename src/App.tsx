@@ -7,6 +7,7 @@ import { SignaturePrograms } from '@/components/SignaturePrograms';
 import { Schedule } from '@/components/Schedule';
 import { Trainers } from '@/components/Trainers';
 import { PersonalTraining } from '@/components/PersonalTraining';
+import { Journey } from '@/components/Journey';
 import { TheClub } from '@/components/TheClub';
 import { FacilityExplorer } from '@/components/FacilityExplorer';
 import { Membership } from '@/components/Membership';
@@ -28,6 +29,7 @@ function App() {
         <Schedule />
         <Trainers />
         <PersonalTraining />
+        <Journey />
         <TheClub />
         <FacilityExplorer />
         <Membership />
