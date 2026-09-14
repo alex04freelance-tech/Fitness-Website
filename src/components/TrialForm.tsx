@@ -67,7 +67,7 @@ export function TrialForm() {
           {/* Left: statement */}
           <div className="lg:col-span-5">
             <p className="text-xs uppercase tracking-[0.3em] text-stone-500 font-medium mb-4">
-              11 — Visit
+              12 — Visit
             </p>
             <motion.h2
               initial={reduced ? {} : { opacity: 0, y: 30 }}

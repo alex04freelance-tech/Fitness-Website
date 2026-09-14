@@ -9,6 +9,7 @@ import { Trainers } from '@/components/Trainers';
 import { PersonalTraining } from '@/components/PersonalTraining';
 import { Journey } from '@/components/Journey';
 import { TheClub } from '@/components/TheClub';
+import { Transformations } from '@/components/Transformations';
 import { FacilityExplorer } from '@/components/FacilityExplorer';
 import { Membership } from '@/components/Membership';
 import { TrialForm } from '@/components/TrialForm';
@@ -31,6 +32,7 @@ function App() {
         <PersonalTraining />
         <Journey />
         <TheClub />
+        <Transformations />
         <FacilityExplorer />
         <Membership />
         <TrialForm />

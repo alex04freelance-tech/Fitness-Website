@@ -12,7 +12,7 @@ export function Location() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Left: info */}
           <div className="lg:col-span-5">
-            <p className="section-label mb-4">12 — Location</p>
+            <p className="section-label mb-4">13 — Location</p>
             <h2 className="font-display text-charcoal text-display-sm font-light mb-10">
               Find us.
             </h2>
